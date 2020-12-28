@@ -11,7 +11,7 @@ git clone <link>
 ```
 #### Копируем файл .nanorc в кореневую директорию пользователя
 ```
-sudo cp -f .nanorc ~/
+sudo cp -f nano-syntax-color/.nanorc ~/
 ```
 #### Удаляем папку git проекта если необходимо
 
