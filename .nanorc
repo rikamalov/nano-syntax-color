@@ -1,0 +1,150 @@
+## Syntax highlighting for Python.
+
+syntax python "\.py$"
+header "^#!.*python"
+magic "Python script"
+comment "#"
+
+linter pyflakes
+
+# Function definitions.
+color blue "def [0-9A-Za-z_]+"
+# Keywords.
+color brightcyan "\<(and|as|assert|async|await|break|class|continue)\>"
+color magenta "\<(del|elif|else|except|finally|for|from)\>"
+color brightcyan "\<(global|if|import|in|is|lambda|nonlocal|not|or)\>"
+color brightcyan "\<(pass|raise|return|try|while|with|yield)\>"
+color magenta "\<(import|from)\>"
+color brightcyan "\<(exec|print)([[:blank:]]|$)"
+
+# Special values.
+color brightmagenta "\<(False|None|True)\>"
+
+## Definition of values and classes
+color brightblue "def [a-zA-Z_0-9]+" 
+color brightblue "class [a-zA-Z_0-9]+" 
+
+# Mono-quoted strings.
+color brightgreen "'([^'\]|\\.)*'|'''"
+color brightgreen ""([^"\]|\\.)*"|""""
+color normal "'''|""""
+
+# Comments.
+color red "(^|[[:blank:]])#.*"
+
+# Triple-quoted strings.
+color brightwhite start="'''([^'),]|$)" end="(^|[^(\])'''"
+color brightwhite start=""""([^"),]|$)" end="(^|[^(\])""""
+
+# Reminders.
+color brightwhite,yellow "\<(FIXME|TODO|XXX)\>"
+
+# Trailing whitespace.
+color ,green "[[:space:]]+$"
+
+## decorators
+color brightgreen "@.*[(]"
+
+## operators
+color magenta "[.:;,+*|=!\%@]" "<" ">" "/" "-" "&"
+
+## parentheses
+color magenta "[(){}]" "\[" "\]"
+
+## numbers
+icolor brightyellow "\b(([1-9][0-9]+)|0+)\.[0-9]+j?\b" "\b([1-9][0-9]*[Lj]?)\b" "\b0o?[0-7]*L?\b" "\b0x[1-9a-f][0-9a-f]*L?\b" "\b0b[01]+\b"
+
+## exception classes
+color cyan "\<(Exception|StandardError|ArithmeticError|LookupError|EnvironmentError|AssertionError|AttributeError|EOFError|FloatingPointError|IOError|ImportError|IndexError|KeyError|KeyboardInterrupt|MemoryError|NameError|NotImplementedError|OSError|OverflowError|RuntimeError|SyntaxError|SystemError|SystemExit|TypeError|UnboundLocalError|UnicodeError|ValueError|WindowsError|ZeroDivisionError)\>"
+## types
+color brightcyan "\<(NoneType|TypeType|IntType|LongType|FloatType|ComplexType|StringType|UnicodeType|BufferType|TupleType|ListType|DictType|FunctionType|LambdaType|CodeType|ClassType|UnboundMethodType|InstanceType|MethodType|BuiltinFunctionType|BuiltinMethodType|ModuleType|FileType|XRangeType|TracebackType|FrameType|SliceType|EllipsisType)\>"
+
+
+
+
+## Syntax highlighting for HTML.
+
+syntax html "\.html?$"
+magic "HTML document"
+comment "<!--|-->"
+
+formatter tidy -m -q
+
+# Tags:
+color cyan "<[[:alpha:]/!?][^>]*>"
+# Bold, italic, and underlined:
+color brightmagenta "</?[biu]>"
+# Named character references:
+color red "&[^;[:space:]]*;"
+# Attributes:
+color blue "\<(abbr|accept(-charset)?|accesskey|action|alink|align|alt|archive|axis|background|bgcolor|border)="
+color blue "\<(cell(padding|spacing)|char(off|set)?|checked|cite|class(id)?|compact|code(base|tag)?|cols(pan)?)="
+color blue "\<(content(editable)?|contextmenu|coords|data|datetime|declare|defer|dir|disabled|enctype)="
+color blue "\<(for|frame(border)?|headers|height|hidden|href(lang)?|hspace|http-equiv|id|ismap)="
+color blue "\<(label|lang|link|longdesc|margin(height|width)|maxlength|media|method|multiple)="
+color blue "\<(name|nohref|noresize|noshade|object|onclick|onfocus|onload|onmouseover|profile|readonly|rel|rev)="
+color blue "\<(rows(pan)?|rules|scheme|scope|scrolling|selected|shape|size|span|src|standby|start|style|summary)="
+color blue "\<(tabindex|target|text|title|type|usemap|valign|value(type)?|vlink|vspace|width|xmlns|xml:space)="
+# Strings:
+color green ""(\\.|[^"])*""
+color magenta "=" "/" "<" ">"  
+# Comments:
+color brightyellow start="<!--" end="-->"
+# Keywords.
+color brightred "\<(script|body|footer|header|link|head|meta|title)\>"
+color red "\<(static)\>"
+## django tags
+color brightwhite start="[{{]([^"),]|$)" end="(^|[^(\])[}}]"
+color brightwhite start="[{%]([^"),]|$)" end="(^|[^(\])[%}]"
+
+
+
+
+## Syntax highlighting for CSS files.
+
+syntax css "\.css$"
+comment "/*|*/"
+
+# First make everything red:
+color brightred     "."
+# Then everything between braces yellow:
+color brightblue  start="\{" end="\}"
+# Then everything after a colon white:
+color brightwhite   start=":" end="([;^{]|$)"
+# Pseudo-classes:
+color brightyellow   ":(active|checked|focus|hover|link|visited|after|before)\>"
+# Comments:
+color yellow    start="/\*" end="\*/"
+# Syntactic characters:
+color green         ";|:|\{|\}"
+
+
+
+
+## Syntax highlighting for Javascript.
+
+syntax javascript "\.js$"
+comment "//"
+
+# Declarational stuff.
+color green "\<(async|class|const|extends|function|let|this|typeof|var|void)\>"
+
+# Flow control and special keywords.
+color brightyellow "\<(do|while|if|else|switch|case|default|for|each|in|of|with|ajax)\>"
+color brightyellow "\<(await|export|import|throw|try|catch|finally|new|delete|document|getElementById|getElementByClass)\>"
+
+# "Exit" points.
+color magenta "\<(break|continue|return|yield)\>"
+color magenta "=" "/" "<" ">"
+
+# Octal/decimal and hexadecimal numbers.
+color cyan "\<([0-9]+|0x[0-9A-Fa-f]+)\>"
+# Special values.
+color cyan "\<(true|false|null|undefined)\>"
+# Strings.
+color brightmagenta ""(\\.|[^"])*"" "'(\\.|[^'])*'" "`(\\.|[^`])*`"
+# Comments.
+color brightblue "(^|[[:space:]])//.*"
+color brightblue start="/\*" end="\*/"
+# Trailing whitespace.
+color ,green "[[:space:]]+$"
